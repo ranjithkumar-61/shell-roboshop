@@ -16,21 +16,21 @@ do
 
 
 
-if [ $instance == "frontend" ]: then
-    IP=$(
+  if [ $instance == "frontend" ]: then
+      IP=$(
         aws ec2 describe-instances \
         --instance-ids $INSTANCE_ID \
         --query 'Reservations[].Instances[].PublicIpAddress' \
         --output text
-    )
-    else
-        IP=$(
+      )
+  else
+    IP=$(
         aws ec2 describe-instances \
         --instance-ids $INSTANCE_ID \
-        --query 'Reservations[].Instances[].PublicIpAddress' \
+        --query 'Reservations[].Instances[].PrivateIpAddress' \
         --output text
     )
 fi
 
-echo "IP Adress: $IP"
+  echo "IP Adress: $IP"
 done
